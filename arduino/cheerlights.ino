@@ -1,9 +1,20 @@
-#include "Tlc5940.h"
+#include <Adafruit_NeoPixel.h>
+
+#define PIN 6
+
+// Parameter 1 = number of pixels in strip
+// Parameter 2 = pin number (most are valid)
+// Parameter 3 = pixel type flags, add together as needed:
+//   NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)
+//   NEO_KHZ400  400 KHz (classic 'v1' (not v2) FLORA pixels, WS2811 drivers)
+//   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)
+//   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(1, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup()
 {
-  // Call Tlc.init() to setup the tlc.
-  Tlc.init();
+  strip.begin();
+  strip.show();  //initialize all pixels to off
   
   // Setup Serial
   Serial.begin(9600);
@@ -14,9 +25,8 @@ void setup()
 }
 
 void loop()
-{
-  
-    // Listen to serial commands from RaspPi
+{ 
+     // Listen to serial commands from RaspPi
   if(Serial.available() > 0)
   {  
     delay(100); 
@@ -40,484 +50,63 @@ void loop()
     //   Currently it echos the color back to serial for debugging
     if (String(stringIn) == "red")
     {  
-    	Serial.println("red");
-        Tlc.clear();
-
-	// LED 1
-        Tlc.set(0, 500);
-        Tlc.set(1, 0);
-        Tlc.set(2, 0);
-	// LED 2
-        Tlc.set(3, 500);
-        Tlc.set(4, 0);
-        Tlc.set(5, 0);
-	// LED 3
-        Tlc.set(6, 500);
-        Tlc.set(7, 0);
-        Tlc.set(8, 0);
-	// LED 4
-        Tlc.set(9, 500);
-        Tlc.set(10, 0);
-        Tlc.set(11, 0);
-	// LED 5
-        Tlc.set(12, 500);
-        Tlc.set(13, 0);
-        Tlc.set(14, 0);
-	// LED 6
-        Tlc.set(16, 500);
-        Tlc.set(17, 0);
-        Tlc.set(18, 0);
-	// LED 7
-        Tlc.set(19, 500);
-        Tlc.set(20, 0);
-        Tlc.set(21, 0);
-	// LED 8
-        Tlc.set(22, 500);
-        Tlc.set(23, 0);
-        Tlc.set(24, 0);
-	// LED 9
-        Tlc.set(25, 500);
-        Tlc.set(26, 0);
-        Tlc.set(27, 0);
-	// LED 10
-        Tlc.set(28, 500);
-        Tlc.set(29, 0);
-        Tlc.set(30, 0);
-
-        Tlc.update();
+            Serial.println("red");
+            colorWipe(strip.Color(255, 0, 0), 50); //MAKE IT RED
     }
     else if (String(stringIn) == "green")
     {  
-    	Serial.println("green");
-        Tlc.clear();
-
-        // LED 1
-        Tlc.set(0, 0);
-        Tlc.set(1, 500);
-        Tlc.set(2, 0);
-        // LED 2
-        Tlc.set(3, 0);
-        Tlc.set(4, 500);
-        Tlc.set(5, 0);
-        // LED 3
-        Tlc.set(6, 0);
-        Tlc.set(7, 500);
-        Tlc.set(8, 0);
-        // LED 4
-        Tlc.set(9, 0);
-        Tlc.set(10, 500);
-        Tlc.set(11, 0);
-        // LED 5
-        Tlc.set(12, 0);
-        Tlc.set(13, 500);
-        Tlc.set(14, 0);
-        // LED 6
-        Tlc.set(16, 0);
-        Tlc.set(17, 500);
-        Tlc.set(18, 0);
-        // LED 7
-        Tlc.set(19, 0);
-        Tlc.set(20, 500);
-        Tlc.set(21, 0);
-        // LED 8
-        Tlc.set(22, 0);
-        Tlc.set(23, 500);
-        Tlc.set(24, 0);
-        // LED 9
-        Tlc.set(25, 0);
-        Tlc.set(26, 500);
-        Tlc.set(27, 0);
-        // LED 10
-        Tlc.set(28, 0);
-        Tlc.set(29, 500);
-        Tlc.set(30, 0);
-
-        Tlc.update();
+            Serial.println("green");
+            colorWipe(strip.Color(0, 255, 0), 50); // MAKE IT GREEN
     }
     else if (String(stringIn) == "blue")
     {  
-    	Serial.println("blue");
-        Tlc.clear();
-
-        // LED 1
-        Tlc.set(0, 0);
-        Tlc.set(1, 0);
-        Tlc.set(2, 500);
-        // LED 2
-        Tlc.set(3, 0);
-        Tlc.set(4, 0);
-        Tlc.set(5, 500);
-        // LED 3
-        Tlc.set(6, 0);
-        Tlc.set(7, 0);
-        Tlc.set(8, 500);
-        // LED 4
-        Tlc.set(9, 0);
-        Tlc.set(10, 0);
-        Tlc.set(11, 500);
-        // LED 5
-        Tlc.set(12, 0);
-        Tlc.set(13, 0);
-        Tlc.set(14, 500);
-        // LED 6
-        Tlc.set(16, 0);
-        Tlc.set(17, 0);
-        Tlc.set(18, 500);
-        // LED 7
-        Tlc.set(19, 0);
-        Tlc.set(20, 0);
-        Tlc.set(21, 500);
-        // LED 8
-        Tlc.set(22, 0);
-        Tlc.set(23, 0);
-        Tlc.set(24, 500);
-        // LED 9
-        Tlc.set(25, 0);
-        Tlc.set(26, 0);
-        Tlc.set(27, 500);
-        // LED 10
-        Tlc.set(28, 0);
-        Tlc.set(29, 0);
-        Tlc.set(30, 500);
-
-        Tlc.update();
+            Serial.println("blue");
+            colorWipe(strip.Color(0, 0, 255), 50); //MAKE IT BLUE
     }
     else if (String(stringIn) == "purple")
     {
-        Serial.println("puple");
-        Tlc.clear();
-
-	// LED 1
-        Tlc.set(0, 250);
-        Tlc.set(1, 0);
-        Tlc.set(2, 250);
-	// LED 2
-        Tlc.set(3, 250);
-        Tlc.set(4, 0);
-        Tlc.set(5, 250);
-	// LED 3
-        Tlc.set(6, 250);
-        Tlc.set(7, 0);
-        Tlc.set(8, 250);
-	// LED 4
-        Tlc.set(9, 250);
-        Tlc.set(10, 0);
-        Tlc.set(11, 250);
-	// LED 5
-        Tlc.set(12, 250);
-        Tlc.set(13, 0);
-        Tlc.set(14, 250);
-	// LED 6
-        Tlc.set(16, 250);
-        Tlc.set(17, 0);
-        Tlc.set(18, 250);
-	// LED 7
-        Tlc.set(19, 250);
-        Tlc.set(20, 0);
-        Tlc.set(21, 250);
-	// LED 8
-        Tlc.set(22, 250);
-        Tlc.set(23, 0);
-        Tlc.set(24, 250);
-	// LED 9
-        Tlc.set(25, 250);
-        Tlc.set(26, 0);
-        Tlc.set(27, 250);
-	// LED 10
-        Tlc.set(28, 250);
-        Tlc.set(29, 0);
-        Tlc.set(30, 250);
-
-        Tlc.update();
+            Serial.println("puple");
+            colorWipe(strip.Color(102, 51, 204), 50); //MAKE IT PURPLE
      }
      else if (String(stringIn) == "cyan")
      {
-        Serial.println("cyan");
-        Tlc.clear();
-
-	// LED 1
-        Tlc.set(0, 0);
-        Tlc.set(1, 500);
-        Tlc.set(2, 500);
-	// LED 2
-        Tlc.set(3, 0);
-        Tlc.set(4, 500);
-        Tlc.set(5, 500);
-	// LED 3
-        Tlc.set(6, 0);
-        Tlc.set(7, 500);
-        Tlc.set(8, 500);
-	// LED 4
-        Tlc.set(9, 0);
-        Tlc.set(10, 500);
-        Tlc.set(11, 500);
-	// LED 5
-        Tlc.set(12, 0);
-        Tlc.set(13, 500);
-        Tlc.set(14, 500);
-	// LED 6
-        Tlc.set(16, 0);
-        Tlc.set(17, 500);
-        Tlc.set(18, 500);
-	// LED 7
-        Tlc.set(19, 0);
-        Tlc.set(20, 500);
-        Tlc.set(21, 500);
-	// LED 8
-        Tlc.set(22, 0);
-        Tlc.set(23, 500);
-        Tlc.set(24, 500);
-	// LED 9
-        Tlc.set(25, 0);
-        Tlc.set(26, 500);
-        Tlc.set(27, 500);
-	// LED 10
-        Tlc.set(28, 0);
-        Tlc.set(29, 500);
-        Tlc.set(30, 500);
-
-        Tlc.update();
+             Serial.println("cyan");
+             colorWipe(strip.Color(0, 255, 255), 50); //MAKE IT CYAN       
      }
      else if (String(stringIn) == "magenta")
      {
-        Serial.println("magenta");
-        Tlc.clear();
-
-	// LED 1
-        Tlc.set(0, 500);
-        Tlc.set(1, 0);
-        Tlc.set(2, 500);
-	// LED 2
-        Tlc.set(3, 500);
-        Tlc.set(4, 0);
-        Tlc.set(5, 500);
-	// LED 3
-        Tlc.set(6, 500);
-        Tlc.set(7, 0);
-        Tlc.set(8, 500);
-	// LED 4
-        Tlc.set(9, 500);
-        Tlc.set(10, 0);
-        Tlc.set(11, 500);
-	// LED 5
-        Tlc.set(12, 500);
-        Tlc.set(13, 0);
-        Tlc.set(14, 500);
-	// LED 6
-        Tlc.set(16, 500);
-        Tlc.set(17, 0);
-        Tlc.set(18, 500);
-	// LED 7
-        Tlc.set(19, 500);
-        Tlc.set(20, 0);
-        Tlc.set(21, 500);
-	// LED 8
-        Tlc.set(22, 500);
-        Tlc.set(23, 0);
-        Tlc.set(24, 500);
-	// LED 9
-        Tlc.set(25, 500);
-        Tlc.set(26, 0);
-        Tlc.set(27, 500);
-	// LED 10
-        Tlc.set(28, 500);
-        Tlc.set(29, 0);
-        Tlc.set(30, 500);
-
-        Tlc.update();
+             Serial.println("magenta");
+             colorWipe(strip.Color(255, 0, 255), 50); //MAKE IT MAGENTA
      }
      else if (String(stringIn) == "yellow")
      {
-        Serial.println("yellow");
-        Tlc.clear();
-
-	// LED 1
-        Tlc.set(0, 500);
-        Tlc.set(1, 500);
-        Tlc.set(2, 0);
-	// LED 2
-        Tlc.set(3, 500);
-        Tlc.set(4, 500);
-        Tlc.set(5, 0);
-	// LED 3
-        Tlc.set(6, 500);
-        Tlc.set(7, 500);
-        Tlc.set(8, 0);
-	// LED 4
-        Tlc.set(9, 500);
-        Tlc.set(10, 500);
-        Tlc.set(11, 0);
-	// LED 5
-        Tlc.set(12, 500);
-        Tlc.set(13, 500);
-        Tlc.set(14, 0);
-	// LED 6
-        Tlc.set(16, 500);
-        Tlc.set(17, 500);
-        Tlc.set(18, 0);
-	// LED 7
-        Tlc.set(19, 500);
-        Tlc.set(20, 500);
-        Tlc.set(21, 0);
-	// LED 8
-        Tlc.set(22, 500);
-        Tlc.set(23, 500);
-        Tlc.set(24, 0);
-	// LED 9
-        Tlc.set(25, 500);
-        Tlc.set(26, 500);
-        Tlc.set(27, 0);
-	// LED 10
-        Tlc.set(28, 500);
-        Tlc.set(29, 500);
-        Tlc.set(30, 0);
-
-        Tlc.update();
+             Serial.println("yellow");
+             colorWipe(strip.Color(255, 255, 0), 50); //MAKE IT YELLOW
      }
      else if (String(stringIn) == "orange")
      {
-        Serial.println("orange");
-        Tlc.clear();
-
-	// LED 1
-        Tlc.set(0, 500);
-        Tlc.set(1, 125);
-        Tlc.set(2, 0);
-	// LED 2
-        Tlc.set(3, 500);
-        Tlc.set(4, 125);
-        Tlc.set(5, 0);
-	// LED 3
-        Tlc.set(6, 500);
-        Tlc.set(7, 125);
-        Tlc.set(8, 0);
-	// LED 4
-        Tlc.set(9, 500);
-        Tlc.set(10, 125);
-        Tlc.set(11, 0);
-	// LED 5
-        Tlc.set(12, 500);
-        Tlc.set(13, 125);
-        Tlc.set(14, 0);
-	// LED 6
-        Tlc.set(16, 500);
-        Tlc.set(17, 125);
-        Tlc.set(18, 0);
-	// LED 7
-        Tlc.set(19, 500);
-        Tlc.set(20, 125);
-        Tlc.set(21, 0);
-	// LED 8
-        Tlc.set(22, 500);
-        Tlc.set(23, 125);
-        Tlc.set(24, 0);
-	// LED 9
-        Tlc.set(25, 500);
-        Tlc.set(26, 125);
-        Tlc.set(27, 0);
-	// LED 10
-        Tlc.set(28, 500);
-        Tlc.set(29, 125);
-        Tlc.set(30, 0);
-
-        Tlc.update();
+             Serial.println("orange");
+             colorWipe(strip.Color(255, 153, 0), 50); //MAKE IT ORANGE
      }
      else if (String(stringIn) == "white" || String(stringIn) == "warmwhite")
      {
-        Serial.println("white");
-        Tlc.clear();
-
-	// LED 1
-        Tlc.set(0, 500);
-        Tlc.set(1, 500);
-        Tlc.set(2, 500);
-	// LED 2
-        Tlc.set(3, 500);
-        Tlc.set(4, 500);
-        Tlc.set(5, 500);
-	// LED 3
-        Tlc.set(6, 500);
-        Tlc.set(7, 500);
-        Tlc.set(8, 500);
-	// LED 4
-        Tlc.set(9, 500);
-        Tlc.set(10, 500);
-        Tlc.set(11, 500);
-	// LED 5
-        Tlc.set(12, 500);
-        Tlc.set(13, 500);
-        Tlc.set(14, 500);
-	// LED 6
-        Tlc.set(16, 500);
-        Tlc.set(17, 500);
-        Tlc.set(18, 500);
-	// LED 7
-        Tlc.set(19, 500);
-        Tlc.set(20, 500);
-        Tlc.set(21, 500);
-	// LED 8
-        Tlc.set(22, 500);
-        Tlc.set(23, 500);
-        Tlc.set(24, 500);
-	// LED 9
-        Tlc.set(25, 500);
-        Tlc.set(26, 500);
-        Tlc.set(27, 500);
-	// LED 10
-        Tlc.set(28, 500);
-        Tlc.set(29, 500);
-        Tlc.set(30, 500);
-
-        Tlc.update();
+             Serial.println("white");
+             colorWipe(strip.Color(255, 255, 255), 50); //MAKE IT WHITE
      }
      else if (String(stringIn) == "black" || String(stringIn) == "off")
      {
-        Serial.println("black");
-        Tlc.clear();
-
-	// LED 1
-        Tlc.set(0, 0);
-        Tlc.set(1, 0);
-        Tlc.set(2, 0);
-	// LED 2
-        Tlc.set(3, 0);
-        Tlc.set(4, 0);
-        Tlc.set(5, 0);
-	// LED 3
-        Tlc.set(6, 0);
-        Tlc.set(7, 0);
-        Tlc.set(8, 0);
-	// LED 4
-        Tlc.set(9, 0);
-        Tlc.set(10, 0);
-        Tlc.set(11, 0);
-	// LED 5
-        Tlc.set(12, 0);
-        Tlc.set(13, 0);
-        Tlc.set(14, 0);
-	// LED 6
-        Tlc.set(16, 0);
-        Tlc.set(17, 0);
-        Tlc.set(18, 0);
-	// LED 7
-        Tlc.set(19, 0);
-        Tlc.set(20, 0);
-        Tlc.set(21, 0);
-	// LED 8
-        Tlc.set(22, 0);
-        Tlc.set(23, 0);
-        Tlc.set(24, 0);
-	// LED 9
-        Tlc.set(25, 0);
-        Tlc.set(26, 0);
-        Tlc.set(27, 0);
-	// LED 10
-        Tlc.set(28, 0);
-        Tlc.set(29, 0);
-        Tlc.set(30, 0);
-
-        Tlc.update();
-     }
+              Serial.println("black");  
+              colorWipe(strip.Color(0, 0, 0), 50); //MAKE IT BLACK
+      }
 
   }
-} // End loop
+ 
+} // End loop     
+
+void colorWipe(uint32_t c, uint8_t wait) {
+  for(uint16_t i=0; i<strip.numPixels(); i++) {
+      strip.setPixelColor(i, c);
+      strip.show();
+      delay(wait);
+  }
+}
