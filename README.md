@@ -55,7 +55,7 @@ This year, thanks to Tony DiCola's Python wrapper for the the excellent rpi_ws28
     sudo /etc/init.d/cheerlights.sh status
     sudo /etc/init.d/cheerlights.sh stop
 
-## (Optional) Set up Cron job to respawn service if it get killed or dropped repeatedly
+## (Optional) Set up Cron job to respawn service if killed or dropped repeatedly
     sudo crontab -e
     # Add this to root's CRON, and remove the '#' before the '* * * * *...'
     # m h  dom mon dow   command
