@@ -1,15 +1,19 @@
-# NeoPixel library strandtest example
-# Author: Tony DiCola (tony@tonydicola.com)
-#
-# Direct port of the Arduino NeoPixel library strandtest example.  Showcases
-# various animations on a strip of NeoPixels.
+#!/usr/bin/env python
+# -*- coding: latin-1 -*-
+
+# Raspberry Pi Neopixel Cheerlights
+# Author: David Bradway
+# 
+# Uses NeoPixel Python library wrapper by Tony DiCola (tony@tonydicola.com)
+#  and NeoPixel/ rpi_ws281x library created by Jeremy Garff.
+# This Raspberry Pi port is based on Arduino and Python code by Dave Koerner https://hexenwarg.wordpress.com
 import time
 import requests
 
 from neopixel import *
 
 # LED strip configuration:
-LED_COUNT   = 89      # Number of LED pixels.
+LED_COUNT   = 89      # CHANGEME! Number of LED pixels.
 LED_PIN     = 18      # GPIO pin connected to the pixels (must support PWM!).
 LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
 LED_DMA     = 5       # DMA channel to use for generating signal (try 5)
@@ -89,8 +93,7 @@ if __name__ == '__main__':
     while True:
         # Read the thingspeak feed to get the current color
         try:
-            r = requests.get('http://api.thingspeak.com/channels/1417/field/1/last.json').json()
-            cheerlights = r['field1']
+            cheerlights = requests.get('http://api.thingspeak.com/channels/1417/field/1/last.json').json['field1']
         except:
             pass
         if cheerlights != color:
@@ -111,7 +114,9 @@ if __name__ == '__main__':
                 colorWipe(strip, Color(255, 255, 0))  # Yellow wipe
             elif cheerlights == 'orange':
                 colorWipe(strip, Color(255, 153, 0))  # Orange wipe
-            elif (cheerlights == 'white' or cheerlights == 'warmwhite'):
+            elif cheerlights == 'pink':
+                colorWipe(strip, Color(255, 192, 203)) # Pink wipe
+            elif (cheerlights == 'white' or cheerlights == 'warmwhite' or cheerlights == 'oldlace'):
                 colorWipe(strip, Color(255, 255, 255)) # White wipe
             elif (cheerlights == 'black' or cheerlights == 'off'):
                 colorWipe(strip, Color(0, 0, 0))  # Black wipe
@@ -121,11 +126,12 @@ if __name__ == '__main__':
             color = cheerlights
             time.sleep(16)
 
-        # Theater chase animations.
-        theaterChase(strip, Color(127, 127, 127))  # White theater chase
-        theaterChase(strip, Color(127,   0,   0))  # Red theater chase
-        theaterChase(strip, Color(  0, 127,   0))  # Green theater chase
+        # Theater chase animations. (Use with above or use randomly)
+        #theaterChase(strip, Color(127, 127, 127))  # White theater chase
+        #theaterChase(strip, Color(127,   0,   0))  # Red theater chase
+        #theaterChase(strip, Color(  0, 127,   0))  # Green theater chase
         # Rainbow animations.
-        rainbow(strip)
-        rainbowCycle(strip)
-        theaterChaseRainbow(strip)
+        #rainbow(strip)
+        #rainbowCycle(strip)
+        #theaterChaseRainbow(strip)
+        time.sleep(0.1)

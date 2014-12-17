@@ -1,8 +1,7 @@
-# NeoPixel library strandtest example
-# Author: Tony DiCola (tony@tonydicola.com)
+# Cheerlights feed test
+# Author: David Bradway (david.bradway@gmail.com)
 #
-# Direct port of the Arduino NeoPixel library strandtest example.  Showcases
-# various animations on a strip of NeoPixels.
+# Direct pot of N0HIO's python script: https://github.com/koernerd/CheerlightsPi
 import time
 import requests
 
@@ -18,8 +17,7 @@ if __name__ == '__main__':
     while True:
         # Read the thingspeak feed to get the current color
         try:
-            r = requests.get('http://api.thingspeak.com/channels/1417/field/1/last.json').json()
-            cheerlights = r['field1']
+            cheerlights = requests.get('http://api.thingspeak.com/channels/1417/field/1/last.json').json['field1']
         except:
             pass
         if cheerlights != color:
@@ -48,4 +46,4 @@ if __name__ == '__main__':
                 print 'non-match!'
             print cheerlights
             color = cheerlights
-            time.sleep(16)
+        time.sleep(0.1)
