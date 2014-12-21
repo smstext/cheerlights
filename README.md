@@ -37,6 +37,11 @@ This year, thanks to Tony DiCola's Python wrapper for the the excellent rpi_ws28
     scons
     cd python
     sudo python setup.py install
+    # Test Library
+    sudo python rpi_ws281x/python/examples/strandtest.py 
+
+## Test the cheerlights feed
+    python test_cheerlights_feed.py
 
 ## Usage
     cd CheerlightsPi/
@@ -70,4 +75,3 @@ This year, thanks to Tony DiCola's Python wrapper for the the excellent rpi_ws28
 
     # (Optional) or continuously monitor it
     tail -f /var/log/syslog | grep CRON
-
