@@ -99,32 +99,48 @@ if __name__ == '__main__':
         if cheerlights != color:
             #New color, do stuff
             if cheerlights == 'red':
-                colorWipe(strip, Color(255, 0, 0))  # Red wipe
+                match = True
+                newColor = Color(255, 0, 0)
             elif cheerlights == 'green':
-                colorWipe(strip, Color(0, 255, 0))  # Green wipe
+                match = True
+                newColor = Color(0, 255, 0)
             elif cheerlights == 'blue':
-                colorWipe(strip, Color(0, 0, 255))  # Blue wipe
+                match = True
+                newColor = Color(0, 0, 255)
             elif cheerlights == 'purple':
-                colorWipe(strip, Color(102, 51, 204)) # Purple wipe
+                match = True
+                newColor = Color(102, 51, 204)
             elif cheerlights == 'cyan':
-                colorWipe(strip, Color(0, 255, 255))  # Cyan wipe
+                match = True
+                newColor = Color(0, 255, 255)
             elif cheerlights == 'magenta':
-                colorWipe(strip, Color(255, 0, 255))  # Magenta wipe
+                match = True
+                newColor = Color(255, 0, 255)
             elif cheerlights == 'yellow':
-                colorWipe(strip, Color(255, 255, 0))  # Yellow wipe
+                match = True
+                newColor = Color(255, 255, 0)
             elif cheerlights == 'orange':
-                colorWipe(strip, Color(255, 153, 0))  # Orange wipe
+                match = True
+                newColor = Color(255, 153, 0)
             elif cheerlights == 'pink':
-                colorWipe(strip, Color(255, 192, 203)) # Pink wipe
+                match = True
+                newColor = Color(255, 192, 203)
             elif (cheerlights == 'white' or cheerlights == 'warmwhite' or cheerlights == 'oldlace'):
-                colorWipe(strip, Color(255, 255, 255)) # White wipe
+                match = True
+                newColor = Color(255, 255, 255)
             elif (cheerlights == 'black' or cheerlights == 'off'):
-                colorWipe(strip, Color(0, 0, 0))  # Black wipe
+                match = True
+                newColor = Color(0, 0, 0)
             else:
+                match = False
                 print 'non-match!'
-            print cheerlights
-            color = cheerlights
-            time.sleep(16)
+            if match == True:
+                match = False
+                theaterChase(strip, newColor)
+                colorWipe(strip, newColor)
+                print cheerlights
+                color = cheerlights
+                time.sleep(16)
 
         # Theater chase animations. (Use with above or use randomly)
         #theaterChase(strip, Color(127, 127, 127))  # White theater chase
