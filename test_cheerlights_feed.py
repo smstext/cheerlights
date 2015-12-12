@@ -1,7 +1,7 @@
 # Cheerlights feed test
 # Author: David Bradway (david.bradway@gmail.com)
 #
-# Direct pot of N0HIO's python script: https://github.com/koernerd/CheerlightsPi
+# Direct port of N0HIO's python script: https://github.com/koernerd/CheerlightsPi
 import time
 import requests
 
