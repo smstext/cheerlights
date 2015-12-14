@@ -28,7 +28,7 @@ This year, thanks to Tony DiCola's Python wrapper for the the excellent rpi_ws28
 
 ### Compile if Easy install doesn't work
     sudo apt-get update
-    sudo apt-get install build-essential python-dev git scons swig
+    sudo apt-get install -y build-essential python-dev git scons swig
     git submodule init
     git submodule update
     cd rpi_ws281x
