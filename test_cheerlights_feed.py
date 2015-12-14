@@ -14,8 +14,9 @@ cheerlights = color
 if __name__ == '__main__':
     # Read the thingspeak feed to get the current color
     try:
-        cheerlights = requests.get('http://api.thingspeak.com/channels/1417/field/1/last.json').json['field1']
+        cheerlights = requests.get('http://api.thingspeak.com/channels/1417/field/1/last.json').json()['field1']
     except:
+        print 'error'
         pass
     if cheerlights != color:
         #New color, do stuff
