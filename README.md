@@ -17,10 +17,8 @@ This year, thanks to Tony DiCola's Python wrapper for the the excellent rpi_ws28
 
 ## Installation, with some of the Requirements listed
     sudo apt-get update
-    sudo apt-get install python-pip
+    sudo apt-get install -y python-pip python-serial python-requests
     pip install requests
-    sudo apt-get install python-serial
-    sudo apt-get install python-requests
     git clone git@github.com:davidbradway/CheerlightsPi.git
 
 ## Requires the rpi_ws281x library be installed
