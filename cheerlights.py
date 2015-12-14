@@ -93,7 +93,7 @@ if __name__ == '__main__':
     while True:
         # Read the thingspeak feed to get the current color
         try:
-            cheerlights = requests.get('http://api.thingspeak.com/channels/1417/field/1/last.json').json['field1']
+            cheerlights = requests.get('http://api.thingspeak.com/channels/1417/field/1/last.json').json()['field1']
         except:
             pass
         if cheerlights != color:
