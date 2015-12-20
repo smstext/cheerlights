@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 
 echo "Update and install dependencies"
 sudo apt-get update -y
