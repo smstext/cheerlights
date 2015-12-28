@@ -13,7 +13,7 @@ import requests
 from neopixel import *
 
 # LED strip configuration:
-LED_COUNT   = 89      # CHANGEME! Number of LED pixels.
+LED_COUNT   = 8      # CHANGEME! Number of LED pixels.
 LED_PIN     = 18      # GPIO pin connected to the pixels (must support PWM!).
 LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
 LED_DMA     = 5       # DMA channel to use for generating signal (try 5)
@@ -146,8 +146,9 @@ if __name__ == '__main__':
         #theaterChase(strip, Color(127, 127, 127))  # White theater chase
         #theaterChase(strip, Color(127,   0,   0))  # Red theater chase
         #theaterChase(strip, Color(  0, 127,   0))  # Green theater chase
+        #theaterChase(strip, Color( 0,   0, 255)) # blue theater chase
         # Rainbow animations.
-        #rainbow(strip)
+        rainbow(strip)
         #rainbowCycle(strip)
         #theaterChaseRainbow(strip)
-        time.sleep(0.1)
+	time.sleep(0.1)
